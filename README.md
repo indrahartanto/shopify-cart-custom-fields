@@ -37,7 +37,7 @@ Code snippets to capture more information in Shopify cart page:
 
 <textarea name="attributes[Card Message]" id="CartMessage" class="input-full" placeholder="Write a message for your recepient (max 150 characters)">{{ cart.attributes["Message"] }}</textarea>
 ```
-5. In **assets/theme.js.liquid**, initialise the [flatpickr](https://flatpickr.js.org) date control and set its [options](https://flatpickr.js.org/options/)
+5. In **assets/theme.js.liquid**, inside `$(document).ready`, initialise the [flatpickr](https://flatpickr.js.org) date control and set its [options](https://flatpickr.js.org/options/)
 ```javascript
 $('#flatpickr').flatpickr({
     dateFormat: "D, d M Y",
