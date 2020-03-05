@@ -1,0 +1,43 @@
+
+<div class="page-width--wide page-container">
+  {% if cart.item_count > 0 %}
+
+    <h1 class="visually-hidden">{{ 'cart.general.title' | t }}</h1>
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+      <footer class="cart__footer">
+        <div class="grid">
+          {% if settings.cart_notes_enable %}
+            <div class="grid__item medium-up--one-half cart__notes">
+              <label for="flatpickr" class="label--hidden">Delivery/Collection Date</label>
+              <input name="attributes[Delivery or Collection Date]" id="flatpickr" class="input-full" placeholder="Choose delivery/collection date" value="{{ cart.attributes.date }}">
+            <p></p>
+            <div class="selector-wrapper" style="background-color:#f4f4f4;">
+				      <label for="CartTime">Timeslot</label>
+    			    <select class="single-option-selector" data-option="option1" id="CartTime" name="attributes[Timeslot]">
+        			  <option value="9 AM - 1 PM"{% if cart.attributes["Timeslot"] == "9 AM - 1 PM" %} selected{% endif %}>9 AM - 1 PM</option>
+    				    <option value="2 PM - 6 PM"{% if cart.attributes["Timeslot"] == "2 PM - 6 PM" %} selected{% endif %}>2 PM - 6 PM</option>
+    				    <option value="6 PM - 10 PM"{% if cart.attributes["Timeslot"] == "6 PM - 10 PM" %} selected{% endif %}>6 PM - 10 PM</option>
+    			    </select>
+			      </div>
+            <p></p>
+            <label for="CartMessage" class="label--hidden">Write a message for your recepient</label>
+            <textarea name="attributes[Card Message]" id="CartMessage" class="input-full" placeholder="Write a message for your recepient (max 150 characters)">{{ cart.attributes["Message"] }}</textarea>
+            <p></p>
+            <label for="CartSpecialInstructions" class="label--hidden">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" id="CartSpecialInstructions" class="input--block" placeholder="{{ 'cart.general.note' | t }}">{{ cart.note }}</textarea>
+          {% endif %}
+        </div>          
+      </footer>
+    </form>
+  {% else %}
+    {% comment %}
+      The cart is empty
+    {% endcomment %}
+    <div class="text-center">
+      <h1>{{ 'cart.general.title' | t }}</h1>
+      <p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+      <p class="cart--cookie-message">{{ 'cart.general.cookies_required' | t }}</p>
+      <p class="cart--continue-browsing">{{ 'cart.general.continue_browsing_html' | t: link: routes.all_products_collection_url }}</p>
+    </div>
+  {% endif %}
+</div>

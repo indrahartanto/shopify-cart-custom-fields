@@ -1,0 +1,15 @@
+$(document).ready(function() {
+  theme.init();
+
+  $('#flatpickr').flatpickr({
+    dateFormat: "D, d M Y",
+    minDate: new Date().fp_incr(2),
+    disableMobile: "true",
+    disable: ["Sat, 11 Jan 2020","Sat, 18 Jan 2020",
+              {
+            from: "Sat, 25 Jan 2020",
+            to: "Sun, 2 Feb 2020"
+        }
+    ]
+  });
+});
